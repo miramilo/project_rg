@@ -174,9 +174,9 @@ int main() {
     pointLight.diffuse = glm::vec3(0.6, 0.6, 0.6);
     pointLight.specular = glm::vec3(1.0, 1.0, 1.0);
 
-    pointLight.constant = 1.0f;
-    pointLight.linear = 0.09f;
-    pointLight.quadratic = 0.032f;
+    pointLight.constant = 0.0f;
+    pointLight.linear = 0.08f;
+    pointLight.quadratic = 0.012f;
 
 
 
