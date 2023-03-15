@@ -150,8 +150,6 @@ int main() {
     ImGuiIO &io = ImGui::GetIO();
     (void) io;
 
-
-
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330 core");
 
@@ -165,20 +163,18 @@ int main() {
 
     // load models
     // -----------
-    Model ourModel("resources/objects/backpack/backpack.obj");
+    Model ourModel("resources/objects/rock/rock.obj");
     ourModel.SetShaderTextureNamePrefix("material.");
 
     PointLight& pointLight = programState->pointLight;
-    pointLight.position = glm::vec3(4.0f, 4.0, 0.0);
-    pointLight.ambient = glm::vec3(0.1, 0.1, 0.1);
-    pointLight.diffuse = glm::vec3(0.6, 0.6, 0.6);
+    pointLight.position = glm::vec3(4.0, 4.0, 4.0);
+    pointLight.ambient = glm::vec3(0.4, 0.4, 0.2);
+    pointLight.diffuse = glm::vec3(0.6, 0.5, 0.6);
     pointLight.specular = glm::vec3(1.0, 1.0, 1.0);
 
-    pointLight.constant = 0.0f;
-    pointLight.linear = 0.08f;
-    pointLight.quadratic = 0.012f;
-
-
+    pointLight.constant = 1.0f;
+    pointLight.linear = 0.09f;
+    pointLight.quadratic = 0.032f;
 
     // draw in wireframe
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -195,7 +191,6 @@ int main() {
         // input
         // -----
         processInput(window);
-
 
         // render
         // ------
@@ -223,6 +218,7 @@ int main() {
 
         // render the loaded model
         glm::mat4 model = glm::mat4(1.0f);
+        model = glm::rotate(model, currentFrame, glm::vec3 (0.0, 0.0, 0.1));
         model = glm::translate(model,
                                programState->backpackPosition); // translate it down so it's at the center of the scene
         model = glm::scale(model, glm::vec3(programState->backpackScale));    // it's a bit too big for our scene, so scale it down
@@ -231,8 +227,6 @@ int main() {
 
         if (programState->ImGuiEnabled)
             DrawImGui(programState);
-
-
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------

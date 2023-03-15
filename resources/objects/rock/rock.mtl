@@ -1,0 +1,5 @@
+newmtl M_Rock_01
+map_Kd T_Rock_01_D.png
+map_Bump T_Rock_01_N.png
+illum 2
+
